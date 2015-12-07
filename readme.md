@@ -23,3 +23,25 @@ Now you can start the server with `php artisan serve`.
 - Pull latest changes
 - Run `php artisan migrate` or `php artisan migrate:refresh`
 - Don't delete any of the migration files. They aren't meant to be deleted.
+
+### Notes
+
+- Watch for commit labels. `[MIGRATION]` or `[UPDATE_LIB]` tell you to run `php artisan migrate` or `composer update` respectively.
+- Attach appropriate commit labels for development work.
+
+----
+
+## Roadmap
+
+### Development Log
+
+- Basic user model complete. Some fields and validators not present.
+- JWTAuth Library by TymonDesigns added
+
+### Todo
+
+#### User Model, Registration, Login
+
+- Update student / faculty specific details
+- Validators for everything
+- Token specific details
