@@ -8,7 +8,6 @@ use JWTAuth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
-use Validator;
 use Log;
 
 class UserController extends Controller
@@ -31,21 +30,6 @@ class UserController extends Controller
     public function create()
     {
         // handled by client
-    }
-
-
-    protected function validator(array $data)
-    {
-        Log::info('Validator data: ', $data);
-        return Validator::make($data, [
-            'firstname' => 'required|max:255',
-            'lastname' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'username' => 'required|alpha_dash|min:5|max:100|unique:users',
-            'dob' => 'required|date',
-            'details_type' => 'required|in:student,faculty',
-            'password' => 'required|confirmed|min:6'
-        ]);
     }
 
     /**
@@ -78,7 +62,7 @@ class UserController extends Controller
 
         // validation of stuff
 
-        $validator = $this->validator($dataValues);
+        $validator = User::validator($dataValues);
 
         if ($validator->fails()) {
             // validation exception
@@ -90,17 +74,7 @@ class UserController extends Controller
 
         Log::info('Validator passed');
 
-        // hash the password
-        $dataValues['password'] = bcrypt($dataValues['password']);
-
-        // create and save the user
-        $user = User::create($dataValues);
-
-        // save the password separately, because guarded property
-        $user->password = $dataValues['password'];
-        $user->save();
-
-        Log::info('User saved');
+        $user = User::register($dataValues);
 
         // call getToken
         $token = JWTAuth::fromUser($user);
