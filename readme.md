@@ -35,13 +35,16 @@ Now you can start the server with `php artisan serve`.
 
 ### Development Log
 
-- Basic user model complete. Some fields and validators not present.
+- Basic user model complete. Some fields not present.
 - JWTAuth Library by TymonDesigns added
+- Basic user validation
+- Basic user login and token return
 
 ### Todo
 
 #### User Model, Registration, Login
 
 - Update student / faculty specific details
-- Validators for everything
 - Token specific details
+- Authentication middleware
+- Database transaction-oriented approach
