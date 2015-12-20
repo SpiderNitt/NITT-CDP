@@ -70,6 +70,9 @@ implements
      *
      * Abstracts away actions for registering the user into the database.
      * Assumes valid information.
+     *
+     * @param array $userdata
+     * @return User
      */
     public static function register(array $userdata) {
         // // Salt for password followed by hash

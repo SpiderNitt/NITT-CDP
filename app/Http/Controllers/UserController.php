@@ -40,15 +40,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        /*
-         * [user::store]
-         *     received at server
-         *     validation
-         *     hash password
-         *     save in db
-         *     call getToken with new user model
-         *     return token
-        */
         Log::info('Entered store function');
 
         $dataValues = $request->all();
