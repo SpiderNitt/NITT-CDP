@@ -74,9 +74,7 @@ implements
      * @return User
      */
     public static function register(array $userdata) {
-        // // Salt for password followed by hash
-        // $salt = str_random(32); // 32-character string
-        // $userdata['password'] = $salt + $userdata['password'];
+        // Hash user password
         $userdata['password'] = Hash::make($userdata['password']);
 
         $user = new User;
@@ -94,6 +92,20 @@ implements
         $user->admin = FALSE;
         $user->save();
         return $user;
+    }
+
+
+
+    /**
+     * Returns flag indicating if user has admin privileges.
+     *
+     * @return bool
+     */
+    public function isAdmin() {
+        if ($this->admin == true) {
+            return true;
+        }
+        return false;
     }
 
 }
