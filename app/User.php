@@ -40,8 +40,7 @@ implements
         'username',
         'dob',
         'email',
-        'password',
-        'details_type'  // careful of this: the user should not CHANGE it
+        'password'
     ];
 
     /**
@@ -80,7 +79,20 @@ implements
         // $userdata['password'] = $salt + $userdata['password'];
         $userdata['password'] = Hash::make($userdata['password']);
 
-        $user = User::create($userdata);
+        $user = new User;
+        $fillableAttributes = $user->getFillable();
+
+        foreach ($fillableAttributes as $attribute) {
+            Log::info("Attrib ".$attribute);
+            if (isset($userdata[$attribute])) {
+                Log::info($attribute." isset");
+                $user[$attribute] = $userdata[$attribute];
+            }
+        }
+
+        $user->details_type = $userdata['details_type']; // guarded property being assigned
+        $user->admin = FALSE;
+        $user->save();
         return $user;
     }
 
