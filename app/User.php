@@ -10,9 +10,15 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract,
-                                    AuthorizableContract,
-                                    CanResetPasswordContract
+use Validator;
+use Log;
+use Hash;
+
+class User extends Model
+implements
+    AuthenticatableContract,
+    AuthorizableContract,
+    CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
 
@@ -28,7 +34,14 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = [
+        'firstname',
+        'lastname',
+        'username',
+        'dob',
+        'email',
+        'password'
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -36,4 +49,51 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+
+    protected function validator(array $userdata) {
+        Log::info('Validator data: ', $userdata);
+        return Validator::make($userdata, [
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'username' => 'required|alpha_dash|min:5|max:100|unique:users',
+            'dob' => 'required|date',
+            'details_type' => 'required|in:student,faculty',
+            'password' => 'required|confirmed|min:6'
+        ]);
+    }
+
+    /**
+     * Registers a new User
+     *
+     * Abstracts away actions for registering the user into the database.
+     * Assumes valid information.
+     *
+     * @param array $userdata
+     * @return User
+     */
+    public static function register(array $userdata) {
+        // // Salt for password followed by hash
+        // $salt = str_random(32); // 32-character string
+        // $userdata['password'] = $salt + $userdata['password'];
+        $userdata['password'] = Hash::make($userdata['password']);
+
+        $user = new User;
+        $fillableAttributes = $user->getFillable();
+
+        foreach ($fillableAttributes as $attribute) {
+            Log::info("Attrib ".$attribute);
+            if (isset($userdata[$attribute])) {
+                Log::info($attribute." isset");
+                $user[$attribute] = $userdata[$attribute];
+            }
+        }
+
+        $user->details_type = $userdata['details_type']; // guarded property being assigned
+        $user->admin = FALSE;
+        $user->save();
+        return $user;
+    }
+
 }

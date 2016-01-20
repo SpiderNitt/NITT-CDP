@@ -11,6 +11,17 @@
 |
 */
 
+use Illuminate\Http\Request;
+
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/api/register', 'UserController@store');
+Route::post('/api/login', 'Auth\AuthenticateController@postLogin');
+
+// test route for jwt auth middleware
+Route::get('/api/testJwt', ['middleware'=>'jwt.auth', function(Request $request) {
+	return response()->json(['message'=>'Works!', 'username' => $request->user()->username], 200);
+}]);
