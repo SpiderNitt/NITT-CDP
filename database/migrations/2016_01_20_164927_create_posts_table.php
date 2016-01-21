@@ -16,14 +16,14 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->text('content');
             $table->integer('author')->unsigned();
-            $table->integer('topic')->unsigned();
+            $table->integer('topic_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('author')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table->foreign('topic')
+            $table->foreign('topic_id')
                 ->references('id')
                 ->on('topics')
                 ->onDelete('cascade');

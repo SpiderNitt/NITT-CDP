@@ -16,10 +16,10 @@ class CreateTopicsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
-            $table->integer('collection')->unsigned();
+            $table->integer('collection_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('collection')
+            $table->foreign('collection_id')
                 ->references('id')
                 ->on('collections')
                 ->onDelete('cascade');
