@@ -51,6 +51,24 @@ implements
     protected $hidden = ['password', 'remember_token'];
 
 
+    /**
+     * Returns flag indicating if user has admin privileges.
+     *
+     * @return bool
+     */
+    public function isAdmin() {
+        if ($this->admin == true) {
+            return true;
+        }
+        return false;
+    }
+
+
+    public function getPosts() {
+        return $this->hasMany('App\Post', 'author');
+    }
+
+
     protected function validator(array $userdata) {
         Log::info('Validator data: ', $userdata);
         return Validator::make($userdata, [
@@ -92,20 +110,6 @@ implements
         $user->admin = FALSE;
         $user->save();
         return $user;
-    }
-
-
-
-    /**
-     * Returns flag indicating if user has admin privileges.
-     *
-     * @return bool
-     */
-    public function isAdmin() {
-        if ($this->admin == true) {
-            return true;
-        }
-        return false;
     }
 
 }
