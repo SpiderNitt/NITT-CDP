@@ -43,16 +43,6 @@ class UserController extends Controller
         Log::info('Entered store function');
 
         $dataValues = $request->all();
-
-
-        $dataValues['username'] = strtolower($dataValues['username']);
-        $dataValues['email'] = strtolower($dataValues['email']);
-
-
-        Log::info('Lowercased dataValues');
-
-        // validation of stuff
-
         $validator = User::validator($dataValues);
 
         if ($validator->fails()) {
@@ -66,8 +56,6 @@ class UserController extends Controller
         Log::info('Validator passed');
 
         $user = User::register($dataValues);
-
-        // call getToken
         $token = JWTAuth::fromUser($user);
 
         Log::info('Token created');

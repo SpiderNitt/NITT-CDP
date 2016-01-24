@@ -94,6 +94,7 @@ implements
     public static function register(array $userdata) {
         // Hash user password
         $userdata['password'] = Hash::make($userdata['password']);
+        $userdata['email'] = strtolower($userdata['email']);
 
         $user = new User;
         $fillableAttributes = $user->getFillable();
