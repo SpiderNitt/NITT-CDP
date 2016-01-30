@@ -2,7 +2,7 @@
 
 namespace App\Http\Responses;
 
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Response;
 
 class AppResponse extends Response {
     public function unauthorized() {
