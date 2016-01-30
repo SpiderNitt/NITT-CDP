@@ -68,6 +68,10 @@ implements
         return $this->hasMany('App\Post', 'author');
     }
 
+    public function getEvents() {
+        return $this->hasMany('App\Event', 'creator');
+    }
+
 
     protected function validator(array $userdata) {
         Log::info('Validator data: ', $userdata);

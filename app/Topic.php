@@ -18,4 +18,8 @@ class Topic extends Model
     public function getPosts() {
         return $this->hasMany('App\Post');
     }
+
+    public function getEvents() {
+        return $this->hasMany('App\Event');
+    }
 }
