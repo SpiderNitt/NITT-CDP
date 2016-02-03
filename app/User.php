@@ -72,6 +72,18 @@ implements
         return $this->hasMany('App\Event', 'creator');
     }
 
+    public function getSubscribers() {
+        return $this->morphToMany('App\User', 'subscribable', 'subscriptions');
+    }
+
+    public function getSubscribedToUsers() {
+        return $this->morphedByMany('App\User', 'subscribable', 'subscriptions');
+    }
+
+    public function getSubscribedToTopics() {
+        return $this->morphedByMany('App\Topic', 'subscribable', 'subscriptions');
+    }
+
 
     protected function validator(array $userdata) {
         Log::info('Validator data: ', $userdata);

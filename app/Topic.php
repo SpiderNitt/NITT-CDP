@@ -22,4 +22,8 @@ class Topic extends Model
     public function getEvents() {
         return $this->hasMany('App\Event');
     }
+
+    public function getSubscribers() {
+        return $this->morphToMany('App\User', 'subscribable', 'subscriptions');
+    }
 }

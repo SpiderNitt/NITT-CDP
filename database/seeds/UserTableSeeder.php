@@ -22,5 +22,23 @@ class UserTableSeeder extends Seeder
             'dob' => '1825-6-7',
             'admin' => TRUE
         ]);
+        User::create([
+            'firstname' => 'Mom',
+            'lastname' => 'Biddle',
+            'username' => 'Goldy6',
+            'email' => 'goldy@harrypotterfan.com',
+            'password' => Hash::make('iloveyouharry'),
+            'dob' => '1835-6-7',
+            'admin' => FALSE
+        ]);
+        User::create([
+            'firstname' => 'Bomb',
+            'lastname' => 'Kiddle',
+            'username' => 'Boldy8',
+            'email' => 'boldy@harrypotterfan.com',
+            'password' => Hash::make('iloveyouharry'),
+            'dob' => '1845-6-7',
+            'admin' => FALSE
+        ]);
     }
 }
