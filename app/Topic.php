@@ -26,4 +26,8 @@ class Topic extends Model
     public function getSubscribers() {
         return $this->morphToMany('App\User', 'subscribable', 'subscriptions');
     }
+
+    public function getModerators() {
+        return $this->morphToMany('App\User', 'moddeable', 'role_moderators');
+    }
 }

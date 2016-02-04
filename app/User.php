@@ -84,6 +84,14 @@ implements
         return $this->morphedByMany('App\Topic', 'subscribable', 'subscriptions');
     }
 
+    public function getModeratingTopics() {
+        return $this->morphedByMany('App\Topic', 'moddeable', 'role_moderators');
+    }
+
+    public function getModeratingCollections() {
+        return $this->morphedByMany('App\Collection', 'moddeable', 'role_moderators');
+    }
+
 
     protected function validator(array $userdata) {
         Log::info('Validator data: ', $userdata);

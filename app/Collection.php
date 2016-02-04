@@ -14,4 +14,8 @@ class Collection extends Model
     public function getTopics() {
         return $this->hasMany('App\Topic');
     }
+
+    public function getModerators() {
+        return $this->morphToMany('App\User', 'moddeable', 'role_moderators');
+    }
 }
