@@ -16,4 +16,8 @@ class Event extends Model
     public function getCreator() {
         return $this->belongsTo('App\User', 'creator');
     }
+
+    public function getPosts() {
+        return $this->morphMany('App\Post', 'post_attachable');
+    }
 }

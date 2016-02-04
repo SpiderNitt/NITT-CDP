@@ -18,4 +18,8 @@ class Post extends Model
     public function getAuthor() {
         return $this->belongsTo('App\User', 'author');
     }
+
+    public function getAttachment() {
+        return $this->morphTo('post_attachable');
+    }
 }
