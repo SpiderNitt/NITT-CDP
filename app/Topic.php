@@ -30,4 +30,8 @@ class Topic extends Model
     public function getModerators() {
         return $this->morphToMany('App\User', 'moddeable', 'role_moderators');
     }
+
+    public function getEditors() {
+        return $this->belongsToMany('App\User', 'role_editors');
+    }
 }

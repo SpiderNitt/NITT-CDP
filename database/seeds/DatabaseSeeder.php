@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PostTableSeeder::class);
         $this->call(SubscriberTableSeeder::class);
         $this->call(ModeratorTableSeeder::class);
+        $this->call(EditorTableSeeder::class);
 
         Model::reguard();
     }

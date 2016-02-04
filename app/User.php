@@ -92,6 +92,10 @@ implements
         return $this->morphedByMany('App\Collection', 'moddeable', 'role_moderators');
     }
 
+    public function getEditableTopics() {
+        return $this->belongsToMany('App\Topic', 'role_editors');
+    }
+
 
     protected function validator(array $userdata) {
         Log::info('Validator data: ', $userdata);
