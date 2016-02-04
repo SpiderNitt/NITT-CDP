@@ -148,7 +148,8 @@ return [
         /*
          * Library Service Providers...
          */
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class
 
     ],
 
