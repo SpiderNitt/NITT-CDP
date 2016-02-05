@@ -10,7 +10,7 @@ class Event extends Model
     protected $fillable = ['scheduled_at', 'description'];
 
     public function getTopic() {
-        return $this->belongsTo('App\Topic');
+        return $this->belongsTo('App\Topic', 'topic_id');
     }
 
     public function getCreator() {

@@ -100,6 +100,10 @@ implements
         return $this->hasMany('App\Comment', 'author');
     }
 
+    public function getVotes() {
+        return $this->hasMany('App\Vote', 'user_id');
+    }
+
 
     protected function validator(array $userdata) {
         Log::info('Validator data: ', $userdata);

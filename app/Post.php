@@ -12,7 +12,7 @@ class Post extends Model
     protected $fillable = ['content'];
 
     public function getTopic() {
-        return $this->belongsTo('App\Topic');
+        return $this->belongsTo('App\Topic', 'topic_id');
     }
 
     public function getAuthor() {
@@ -25,5 +25,9 @@ class Post extends Model
 
     public function getComments() {
         return $this->morphMany('App\Comment', 'commentable');
+    }
+
+    public function getVotes() {
+        return $this->morphMany('App\Vote', 'voteable');
     }
 }

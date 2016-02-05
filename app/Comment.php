@@ -16,4 +16,8 @@ class Comment extends Model
     public function getCommentable() {
         return $this->morphTo('commentable');
     }
+
+    public function getVotes() {
+        return $this->morphMany('App\Vote', 'voteable');
+    }
 }

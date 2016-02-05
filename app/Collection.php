@@ -12,7 +12,7 @@ class Collection extends Model
     protected $fillable = ['name', 'description'];
 
     public function getTopics() {
-        return $this->hasMany('App\Topic');
+        return $this->hasMany('App\Topic', 'collection_id');
     }
 
     public function getModerators() {

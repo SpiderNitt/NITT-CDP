@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call(EditorTableSeeder::class);
         $this->call(EventTableSeeder::class);
         $this->call(CommentTableSeeder::class);
+        $this->call(VoteTableSeeder::class);
+
         Model::reguard();
     }
 }

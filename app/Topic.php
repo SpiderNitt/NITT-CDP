@@ -12,15 +12,15 @@ class Topic extends Model
     protected $fillable = ['name', 'description'];
 
     public function getCollection() {
-        return $this->belongsTo('App\Collection');
+        return $this->belongsTo('App\Collection', 'collection_id');
     }
 
     public function getPosts() {
-        return $this->hasMany('App\Post');
+        return $this->hasMany('App\Post', 'topic_id');
     }
 
     public function getEvents() {
-        return $this->hasMany('App\Event');
+        return $this->hasMany('App\Event', 'topic_id');
     }
 
     public function getSubscribers() {
