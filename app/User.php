@@ -73,27 +73,27 @@ implements
     }
 
     public function getSubscribers() {
-        return $this->morphToMany('App\User', 'subscribable', 'subscriptions');
+        return $this->morphToMany('App\User', 'subscribable', 'subscriptions')->withTimestamps();
     }
 
     public function getSubscribedToUsers() {
-        return $this->morphedByMany('App\User', 'subscribable', 'subscriptions');
+        return $this->morphedByMany('App\User', 'subscribable', 'subscriptions')->withTimestamps();
     }
 
     public function getSubscribedToTopics() {
-        return $this->morphedByMany('App\Topic', 'subscribable', 'subscriptions');
+        return $this->morphedByMany('App\Topic', 'subscribable', 'subscriptions')->withTimestamps();
     }
 
     public function getModeratingTopics() {
-        return $this->morphedByMany('App\Topic', 'moddeable', 'role_moderators');
+        return $this->morphedByMany('App\Topic', 'moddeable', 'role_moderators')->withTimestamps();
     }
 
     public function getModeratingCollections() {
-        return $this->morphedByMany('App\Collection', 'moddeable', 'role_moderators');
+        return $this->morphedByMany('App\Collection', 'moddeable', 'role_moderators')->withTimestamps();
     }
 
     public function getEditableTopics() {
-        return $this->belongsToMany('App\Topic', 'role_editors');
+        return $this->belongsToMany('App\Topic', 'role_editors')->withTimestamps();
     }
 
 

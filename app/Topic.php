@@ -24,14 +24,14 @@ class Topic extends Model
     }
 
     public function getSubscribers() {
-        return $this->morphToMany('App\User', 'subscribable', 'subscriptions');
+        return $this->morphToMany('App\User', 'subscribable', 'subscriptions')->withTimestamps();
     }
 
     public function getModerators() {
-        return $this->morphToMany('App\User', 'moddeable', 'role_moderators');
+        return $this->morphToMany('App\User', 'moddeable', 'role_moderators')->withTimestamps();
     }
 
     public function getEditors() {
-        return $this->belongsToMany('App\User', 'role_editors');
+        return $this->belongsToMany('App\User', 'role_editors')->withTimestamps();
     }
 }

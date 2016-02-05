@@ -16,6 +16,6 @@ class Collection extends Model
     }
 
     public function getModerators() {
-        return $this->morphToMany('App\User', 'moddeable', 'role_moderators');
+        return $this->morphToMany('App\User', 'moddeable', 'role_moderators')->withTimestamps();
     }
 }
