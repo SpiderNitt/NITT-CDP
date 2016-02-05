@@ -96,6 +96,10 @@ implements
         return $this->belongsToMany('App\Topic', 'role_editors')->withTimestamps();
     }
 
+    public function getComments() {
+        return $this->hasMany('App\Comment', 'author');
+    }
+
 
     protected function validator(array $userdata) {
         Log::info('Validator data: ', $userdata);

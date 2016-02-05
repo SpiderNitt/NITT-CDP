@@ -22,4 +22,8 @@ class Post extends Model
     public function getAttachment() {
         return $this->morphTo('post_attachable');
     }
+
+    public function getComments() {
+        return $this->morphMany('App\Comment', 'commentable');
+    }
 }

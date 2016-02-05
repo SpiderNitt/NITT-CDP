@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ModeratorTableSeeder::class);
         $this->call(EditorTableSeeder::class);
         $this->call(EventTableSeeder::class);
-
+        $this->call(CommentTableSeeder::class);
         Model::reguard();
     }
 }
